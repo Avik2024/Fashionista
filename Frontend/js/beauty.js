@@ -120,33 +120,31 @@ function createStarRating(rating) {
 // Create product card
 function createProductCard(product) {
     return `
-        <div class="product-card bg-white rounded-lg overflow-hidden shadow-lg" data-category="${product.category}" data-tag="${product.tag}">
-            <div class="relative">
-                <img src="${product.image}" alt="${product.name}" class="w-full h-64 object-cover">
-                ${product.sale ? `<span class="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 rounded-full text-sm">Sale</span>` : ''}
-                <button onclick="toggleWishlist(${product.id})" class="absolute top-2 right-2 bg-white p-2 rounded-full shadow-md hover:bg-purple-600 hover:text-white transition">
+        <div class="product-card" data-category="${product.category}" data-tag="${product.tag}">
+            <div class="product-image">
+                <img src="${product.image}" alt="${product.name}" loading="lazy">
+                ${product.sale ? `<span class="sale-badge">SALE</span>` : ''}
+                <button class="wishlist-btn" onclick="toggleWishlist(${product.id})">
                     <i class="fa${wishlist.includes(product.id) ? 's' : 'r'} fa-heart"></i>
                 </button>
             </div>
-            <div class="p-4">
-                <h3 class="text-lg font-semibold mb-2">${product.name}</h3>
-                <div class="flex items-center mb-2">
-                    <div class="text-yellow-400 mr-2">
-                        ${createStarRating(product.rating)}
-                    </div>
-                    <span class="text-gray-600 text-sm">(${product.reviews})</span>
+            <div class="product-details">
+                <h3 class="product-title">${product.name}</h3>
+                <div class="product-price">
+                    ${product.sale 
+                        ? `<span class="text-gray-400 line-through">$${product.price}</span> 
+                           <span class="text-red-500">$${product.salePrice}</span>`
+                        : `$${product.price}`
+                    }
                 </div>
-                <div class="flex items-center justify-between">
-                    <div class="text-lg font-bold ${product.sale ? 'text-red-500' : 'text-gray-900'}">
-                        ${product.sale ? `
-                            <span class="text-gray-500 line-through text-sm mr-2">$${product.price}</span>
-                            $${product.salePrice}
-                        ` : `$${product.price}`}
-                    </div>
-                    <button onclick="addToCart(${product.id})" class="bg-purple-600 text-white px-4 py-2 rounded-full hover:bg-purple-700 transition">
-                        Add to Cart
-                    </button>
+                <div class="product-rating">
+                    ${createStarRating(product.rating)}
+                    <span class="text-gray-500 text-sm">(${product.reviews})</span>
                 </div>
+                <button onclick="addToCart(${product.id})" 
+                    class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition mt-2">
+                    Add to Cart
+                </button>
             </div>
         </div>
     `;

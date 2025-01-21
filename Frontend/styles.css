@@ -258,7 +258,7 @@ body {
     }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 370px) {
     .hero-slider {
         height: 400px;
     }
@@ -277,7 +277,7 @@ body {
 }
 
 /* Adjust Featured Products Section for Small Screens */
-@media (max-width: 400px) {
+@media (max-width: 370px) {
     /* Reduce width of the Featured Products section */
     .featured-products {
         width: 90%; /* Adjust width for small screens */
@@ -320,5 +320,18 @@ body {
 
     .product-details {
         padding: 1rem; /* Reduce padding */
+    }
+}
+
+@media (max-width: 370px) {
+    .product-grid {
+        display: grid;
+        grid-template-columns: 1fr; /* Single column layout */
+        gap: 10px; /* Space between items */
+    }
+
+    .filter-btn {
+        width: 100%; /* Full width buttons */
+        margin-bottom: 10px; /* Space between buttons */
     }
 }
